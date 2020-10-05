@@ -1,5 +1,8 @@
 'use strict';
 
+const MAX_NUMBER_PHRASE = 2;
+const MAX_NUMBER_COMMENTS = 5;
+
 const messages = ['Всё отлично!',
 'В целом всё неплохо. Но не всё.',
 'Когда вы делаете фотографию, хорошо бы убирать палец из кадра. В конце концов это просто непрофессионально.',
@@ -10,18 +13,16 @@ const messages = ['Всё отлично!',
 const names = ['Иванов', 'Петров', 'Сидоров'];
 
 const picturesElement = document.querySelector('.pictures');
-console.log(picturesElement);
 
 const pictureTemplate = document.querySelector('#picture')
   .content
   .querySelector('.picture');
-console.log(pictureTemplate);
 
 const getRandomInt = (minValue, maxValue) => {
   return Math.floor(Math.random() * (maxValue - minValue + 1)) + minValue;
 }
 
-const generateMessage = (len = 2) => {
+const generateMessage = (len = MAX_NUMBER_PHRASE) => {
   let result = '';
   for (let i = 0; i < len; i++) {
     result += messages[getRandomInt(0, messages.length - 1)] + ' ';
@@ -29,7 +30,7 @@ const generateMessage = (len = 2) => {
   return result.trim();
 }
 
-const generateComments = (len = 5) => {
+const generateComments = (len = MAX_NUMBER_COMMENTS) => {
   const result = [];
   for (let i = 1; i <= len; i++) {
     result.push({
@@ -55,7 +56,6 @@ const generateUserPhotos = (len = 25) => {
 }
 
 const userPhotos = generateUserPhotos();
-console.log(userPhotos);
 
 const renderPhotos = (photo) => {
   const element = pictureTemplate.cloneNode(true);
@@ -66,8 +66,12 @@ const renderPhotos = (photo) => {
   return element;
 }
 
-const fragment = document.createDocumentFragment();
-for (let i = 0; i < userPhotos.length; i++) {
-  fragment.appendChild(renderPhotos(userPhotos[i]));
+const pullDocument = () => {
+  const fragment = document.createDocumentFragment();
+  for (let i = 0; i < userPhotos.length; i++) {
+    fragment.appendChild(renderPhotos(userPhotos[i]));
+  }
+  picturesElement.appendChild(fragment);
 }
-picturesElement.appendChild(fragment);
+
+pullDocument();
