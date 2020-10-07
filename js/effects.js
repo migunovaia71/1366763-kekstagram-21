@@ -6,7 +6,7 @@ const defaultLevelValue = document.querySelector('.effect-level__value');
 const imgUploadEffectLevel = document.querySelector('.img-upload__effect-level');
 const effectsRadios = document.querySelectorAll('.effects__radio');
 const imgUploadPreview = document.querySelector('.img-upload__preview');
-
+const imgUploadForm = document.querySelector('.img-upload__form');
 const effectsList = document.querySelector('.effects__list');
 
 effectsList.addEventListener('click', () => {
@@ -17,16 +17,27 @@ effectLevelPin.addEventListener('mouseup', () => {
   const effectLevel = (effectLevelPin.offsetLeft / effectLevelLine.offsetWidth) * 100;
 });
 
-for (let i = 0, length = effectsRadios.length; i < length; i++) {
-  effectsRadios[i].addEventListener('change', () => {
-    imgUploadPreview.className = 'img-upload__preview';
-    if (effectsRadios[i].checked) {
-      if (effectsRadios[i].value !== 'none') {
-        imgUploadPreview.classList.add('effects__preview--' + effectsRadios[i].value);
-        imgUploadEffectLevel.classList.remove('hidden');
-      } else {
-        imgUploadEffectLevel.classList.add('hidden');
-      }
+let lastEffectClass = '';
+
+const setEffect = (radio) => {
+  if (lastEffectClass !== '') {
+    imgUploadPreview.classList.remove(lastEffectClass);
+  }
+  if (radio.checked) {
+    if (radio.value !== 'none') {
+      const effectClass = 'effects__preview--' + radio.value;
+      lastEffectClass = effectClass;
+      imgUploadPreview.classList.add(effectClass);
+      imgUploadEffectLevel.classList.remove('hidden');
+    } else {
+      imgUploadEffectLevel.classList.add('hidden');
     }
-  });
+  }
 }
+
+imgUploadForm.addEventListener('change', (evt) => {
+  if (evt.target.classList.contains('effects__radio')) {
+    const radio = evt.target;
+    setEffect(radio);
+  }
+});

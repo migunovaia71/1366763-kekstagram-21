@@ -4,6 +4,7 @@ const uploadFile = document.querySelector('#upload-file');
 const uploadOverlay = document.querySelector('.img-upload__overlay');
 const uploadCancel = uploadOverlay.querySelector('#upload-cancel');
 const body = document.querySelector('body');
+const defaultEffectRadio = document.querySelector('#effect-none');
 
 uploadFile.addEventListener('change', () => {
   uploadOverlay.classList.remove('hidden');
@@ -23,6 +24,8 @@ const closePopup = () => {
     body.classList.remove('modal-open');
     document.removeEventListener('keydown', onPopupEscPress);
     setImgScale();
+    defaultEffectRadio.checked = true;
+    setEffect(defaultEffectRadio);
 }
 
 uploadCancel.addEventListener('click', () => {
