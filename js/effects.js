@@ -8,6 +8,7 @@ const effectsRadios = document.querySelectorAll('.effects__radio');
 const imgUploadPreview = document.querySelector('.img-upload__preview');
 const imgUploadForm = document.querySelector('.img-upload__form');
 const effectsList = document.querySelector('.effects__list');
+const defaultEffectRadio = document.querySelector('#effect-none');
 
 effectsList.addEventListener('click', () => {
   const effectLevel = defaultLevelValue.value;
@@ -18,6 +19,11 @@ effectLevelPin.addEventListener('mouseup', () => {
 });
 
 let lastEffectClass = '';
+
+const setDefaultEffect = () => {
+  defaultEffectRadio.checked = true;
+  setEffect(defaultEffectRadio);
+}
 
 const setEffect = (radio) => {
   if (lastEffectClass !== '') {
