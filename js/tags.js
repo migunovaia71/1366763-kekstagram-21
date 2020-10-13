@@ -1,5 +1,6 @@
+'use strict';
+
 (function () {
-  'use strict';
 
   const MAX_TAG_LENGTH = 20;
   const MAX_TAG_NUMBER = 5;

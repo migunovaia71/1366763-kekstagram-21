@@ -1,5 +1,6 @@
+'use strict';
+
 (function () {
-  'use strict';
 
   const effectLevelPin = document.querySelector('.effect-level__pin');
   const effectLevelLine = document.querySelector('.effect-level__line');
@@ -21,11 +22,9 @@
 
   let lastEffectClass = '';
 
-  window.effects = {
-    setDefaultEffect: () => {
-      defaultEffectRadio.checked = true;
-      setEffect(defaultEffectRadio);
-    }
+  const setDefaultEffect = () => {
+    defaultEffectRadio.checked = true;
+    setEffect(defaultEffectRadio);
   }
 
   const setEffect = (radio) => {
@@ -50,4 +49,8 @@
       setEffect(radio);
     }
   });
+
+  window.effects = {
+    setDefaultEffect: setDefaultEffect
+  }
 })();

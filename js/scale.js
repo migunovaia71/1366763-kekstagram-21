@@ -1,5 +1,6 @@
+'use strict';
+
 (function () {
-  'use strict';
 
   const DEFAULT_SCALE = 100;
   const MIN_SCALE = 25;
@@ -13,21 +14,19 @@
 
   let scaleControlValue = DEFAULT_SCALE;
 
-  window.scale = {
-    setImgScale: (value = DEFAULT_SCALE) => {
-      scaleControlInput.value = value + '%';
-      imgPreview.style.transform = 'scale(' + value / 100; + ')';
-    }
-  };
+  const setImgScale = (value = DEFAULT_SCALE) => {
+    scaleControlInput.value = value + '%';
+    imgPreview.style.transform = 'scale(' + value / 100; + ')';
+  }
 
-  window.scale.setImgScale(scaleControlValue);
+  setImgScale(scaleControlValue);
 
   scaleControlBigger.addEventListener('click', () => {
     scaleControlValue += STEP_SCALE;
     if (scaleControlValue > MAX_SCALE) {
       scaleControlValue = MAX_SCALE
     }
-    window.scale.setImgScale(scaleControlValue);
+    setImgScale(scaleControlValue);
   });
 
   scaleControlSmaller.addEventListener('click', () => {
@@ -35,6 +34,11 @@
     if (scaleControlValue < MIN_SCALE) {
       scaleControlValue = MIN_SCALE
     }
-    window.scale.setImgScale(scaleControlValue);
+    setImgScale(scaleControlValue);
   });
+
+  window.scale = {
+    setImgScale: setImgScale
+  };
+
 })();
