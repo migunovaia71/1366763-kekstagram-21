@@ -22,6 +22,9 @@
     for (let i = 0; i < photos.length; i++) {
       fragment.appendChild(renderPhoto(photos[i]));
     }
+    picturesElement.querySelectorAll('.picture').forEach((element) => {
+      element.remove();
+    })
     picturesElement.appendChild(fragment);
   }
 
@@ -30,9 +33,17 @@
   }
 
   const successHandler = (data) => {
+    window.data.loadedData = data;
     pullDocument(data);
+    window.filter.showFilters();
   }
 
   window.load.loadData(URL, successHandler, errorHandler);
 
+  window.data = {
+    loadedData: [],
+    pullDocument: pullDocument
+  };
+
 })();
+
