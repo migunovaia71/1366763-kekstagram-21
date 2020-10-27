@@ -36,6 +36,7 @@
     window.data.loadedData = data;
     pullDocument(data);
     window.filter.showFilters();
+    window.popup.open(window.data.loadedData[0]);
   }
 
   window.load.loadData(URL, successHandler, errorHandler);
