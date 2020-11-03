@@ -2,6 +2,8 @@
 
 (function () {
 
+    const KEY_ESCAPE = 'Escape';
+
     const bigPicture = document.querySelector('.big-picture');
     const bigPictureImg = bigPicture.querySelector('.big-picture__img img');
     const likesCount = bigPicture.querySelector('.likes-count');
@@ -14,6 +16,7 @@
     const socialCommentCount = bigPicture.querySelector('.social__comment-count');
     const commentsLoader = bigPicture.querySelector('.comments-loader');
     const body = document.querySelector('body');
+    const pictureCancel = bigPicture.querySelector('#picture-cancel');
 
 
     const open = (photo) => {
@@ -30,6 +33,7 @@
         socialCommentCount.classList.add('hidden');
         commentsLoader.classList.add('hidden');
         body.classList.add('modal-open');
+        document.addEventListener('keydown', onPopupEscPress);
     }
 
     const renderComment = (comment) => {
@@ -41,8 +45,26 @@
         return element;
     }
 
+    const onPopupEscPress = (evt) => {
+        if (evt.key === KEY_ESCAPE) {
+          evt.preventDefault();
+          close();
+        }
+      };
+    
+      const close = () => {
+          bigPicture.classList.add('hidden');
+          body.classList.remove('modal-open');
+          document.removeEventListener('keydown', onPopupEscPress);
+      }
+    
+      pictureCancel.addEventListener('click', () => {
+        close();
+      });
+
     window.popup = {
-        open
+        open,
+        close
       };
 
 })();

@@ -8,11 +8,18 @@
     .content
     .querySelector('.picture');
 
-  const renderPhoto = (photo) => {
+  const renderPhoto = (photo, index) => {
     const element = pictureTemplate.cloneNode(true);
     element.querySelector('.picture__img').src = photo.url;
     element.querySelector('.picture__likes').textContent = photo.likes;
     element.querySelector('.picture__comments').textContent = photo.comments.length;
+    
+    const onPhotoClick = (event) => {
+      event.preventDefault();
+      window.popup.open(photo);
+    }
+  
+    element.addEventListener('click', onPhotoClick);
 
     return element;
   }
@@ -20,7 +27,7 @@
   const pullDocument = (photos) => {
     const fragment = document.createDocumentFragment();
     for (let i = 0; i < photos.length; i++) {
-      fragment.appendChild(renderPhoto(photos[i]));
+      fragment.appendChild(renderPhoto(photos[i], i));
     }
     picturesElement.querySelectorAll('.picture').forEach((element) => {
       element.remove();
@@ -36,7 +43,6 @@
     window.data.loadedData = data;
     pullDocument(data);
     window.filter.showFilters();
-    window.popup.open(window.data.loadedData[0]);
   }
 
   window.load.loadData(URL, successHandler, errorHandler);

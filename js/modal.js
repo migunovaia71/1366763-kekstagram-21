@@ -7,6 +7,7 @@
   const uploadOverlay = document.querySelector('.img-upload__overlay');
   const uploadCancel = uploadOverlay.querySelector('#upload-cancel');
   const body = document.querySelector('body');
+  const textDescription = document.querySelector('.text__description');
 
   uploadFile.addEventListener('change', () => {
     uploadOverlay.classList.remove('hidden');
@@ -15,7 +16,7 @@
   });
 
   const onPopupEscPress = (evt) => {
-    if (evt.key === KEY_ESCAPE) {
+    if (evt.key === KEY_ESCAPE && document.activeElement !== textDescription) {
       evt.preventDefault();
       closePopup();
     }
