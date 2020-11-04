@@ -75,21 +75,17 @@
     const formData = new FormData(imgUploadForm);
 
     const errorHandler = (errorMessage) => {
-      console.log(errorMessage);
       showMessage(errorTemplate, '.error__button');
     }
   
     const successHandler = (data) => {
-      console.log(data);
       closePopup();
       showMessage(successTemplate, '.success__button');
     }
 
     if (imgUploadForm.checkValidity()) {
       window.load.loadData(URL, successHandler, errorHandler, 'POST', formData);
-    } else {
-      // TODO: добавляем рамки красные
-    }
+    } 
     
   });
 
