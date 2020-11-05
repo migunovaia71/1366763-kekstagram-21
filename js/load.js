@@ -9,7 +9,7 @@
   };
   const TIMEOUT_IN_MS = 10000;
 
-  const loadData = (url, onSuccess, onError) => {
+  const loadData = (url, onSuccess, onError, method = 'GET', data = null) => {
     const xhr = new XMLHttpRequest();
 
     xhr.responseType = 'json';
@@ -50,8 +50,8 @@
 
     xhr.timeout = TIMEOUT_IN_MS;
 
-    xhr.open('GET', url);
-    xhr.send();
+    xhr.open(method, url);
+    xhr.send(data);
   }
 
   window.load = {
