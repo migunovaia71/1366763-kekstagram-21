@@ -2,24 +2,25 @@
 
 (function () {
 
+  const DEFAULT_VALUE = 20;
+
   const effectLevelPin = document.querySelector('.effect-level__pin');
   const effectLevelLine = document.querySelector('.effect-level__line');
-  const defaultLevelValue = document.querySelector('.effect-level__value');
+  const levelValue = document.querySelector('.effect-level__value');
   const imgUploadEffectLevel = document.querySelector('.img-upload__effect-level');
-  const effectsRadios = document.querySelectorAll('.effects__radio');
   const imgUploadPreview = document.querySelector('.img-upload__preview');
   const imgUploadForm = document.querySelector('.img-upload__form');
-  const effectsList = document.querySelector('.effects__list');
   const defaultEffectRadio = document.querySelector('#effect-none');
   const effectLevelDepth = document.querySelector('.effect-level__depth');
 
   let lastEffectClass = '';
 
 
-  const setEffectLevel = (persent) => {
+  const setEffectLevel = (persent = DEFAULT_VALUE) => {
     const newPercentString = persent + '%';
     effectLevelPin.style.left = newPercentString;
     effectLevelDepth.style.width = newPercentString;
+    levelValue.value = parseInt(persent);
 
     switch(lastEffectClass) {
       case 'effects__preview--chrome':
@@ -83,8 +84,7 @@
         lastEffectClass = '';
         imgUploadEffectLevel.classList.add('hidden');
       }
-      const effectLevel = defaultLevelValue.value;
-      setEffectLevel(effectLevel);
+      setEffectLevel(DEFAULT_VALUE);
     }
   }
 
@@ -96,6 +96,7 @@
   });
 
   window.effects = {
-    setDefaultEffect: setDefaultEffect
+    setDefaultEffect,
+    setEffectLevel
   }
 })();
