@@ -57,7 +57,7 @@
 
                   <!-- Изменение глубины эффекта, накладываемого на изображение -->
                   <fieldset class="img-upload__effect-level  effect-level hidden">
-                    <input class="effect-level__value" type="number" name="effect-level" value="20">
+                    <input class="effect-level__value" type="number" name="effect-level" value="100">
                     <div class="effect-level__line">
                       <div class="effect-level__pin" tabindex="0">Кнопка изменения глубины эффекта фотографии</div>
                       <div class="effect-level__depth">Глубина эффекта фотографии</div>
@@ -240,7 +240,9 @@
   </li>
   </template>
 
-
+  <div class="alert hidden">
+    <div class="alert__text">Произошла ошибка запроса</div>
+  </div>
 
   <!-- Экран загрузки изображения -->
   <template id="messages">
