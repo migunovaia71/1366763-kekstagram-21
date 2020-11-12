@@ -17,6 +17,8 @@
   const errorTemplate = document.querySelector('#error')
     .content
     .querySelector('.error');
+  const textHashtags = document.querySelector('.text__hashtags');
+  const imgUploadSubmit = document.querySelector('.img-upload__submit');
 
   uploadFile.addEventListener('change', () => {
     uploadOverlay.classList.remove('hidden');
@@ -69,6 +71,14 @@
     document.addEventListener('keydown', onKeyPress);
   }
 
+  imgUploadSubmit.addEventListener('click', (event) => {
+    if (!imgUploadForm.checkValidity()) {
+      if (window.tags.errorMessage) {
+        textHashtags.classList.add('incorrect__field');
+      }
+    }
+  });
+
   
   imgUploadForm.addEventListener('submit', (event) => {
     event.preventDefault();
@@ -82,10 +92,11 @@
       closePopup();
       showMessage(successTemplate, '.success__button');
     }
+    console.log('1111');
 
     if (imgUploadForm.checkValidity()) {
       window.load.loadData(URL, successHandler, errorHandler, 'POST', formData);
-    } 
+    }
     
   });
 

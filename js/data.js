@@ -2,8 +2,11 @@
 
 (function () {
 
+  const ALERT_TIMEOUT = 5000;
+
   const URL = 'https://21.javascript.pages.academy/kekstagram/data';
   const picturesElement = document.querySelector('.pictures');
+  const alertMessage = document.querySelector('.alert');
   const pictureTemplate = document.querySelector('#picture')
     .content
     .querySelector('.picture');
@@ -36,7 +39,10 @@
   }
 
   const errorHandler = (errorMessage) => {
-    console.log(errorHandler);
+    alertMessage.classList.remove('hidden');
+    setTimeout(() => {
+      alertMessage.classList.add('hidden');
+    }, ALERT_TIMEOUT);
   }
 
   const successHandler = (data) => {

@@ -1446,6 +1446,34 @@ main {
   overflow: hidden;
 }
 
+
+
+.alert {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  background-color: red;
+  margin: 0 auto;
+  width: 300px;
+  border-radius: 1%;
+  padding: 20px;
+}
+
+.alert__text {
+  text-align: center;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.incorrect__field {
+  border: 5px solid red;
+}
+
 .hidden {
   display: none;
 }

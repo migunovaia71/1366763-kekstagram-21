@@ -48,8 +48,15 @@
 
     }
 
+    window.tags.errorMessage = errorMessage;
+
     textHashtags.setCustomValidity(errorMessage);
 
     textHashtags.reportValidity();
   });
+
+  window.tags = {
+    errorMessage: ''
+  };
+
 })();
