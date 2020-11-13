@@ -32,6 +32,8 @@
       }
     };
 
+    let onCommentsLoaderClick = null;
+
     const open = (photo) => {
         commentsLoader.classList.remove('hidden');
         bigPicture.classList.remove('hidden');
@@ -46,7 +48,7 @@
         socialCaption.textContent = photo.description;
         body.classList.add('modal-open');
         document.addEventListener('keydown', onPopupEscPress);
-        commentsLoader.addEventListener('click', () => {
+        commentsLoader.addEventListener('click', onCommentsLoaderClick = () => {
           commentsStart += NUMBER_COMMENTS;
           commentsEnd += NUMBER_COMMENTS;
           renderCommentsGroup(comments, commentsStart, commentsEnd);
@@ -70,6 +72,7 @@
       };
     
       const close = () => {
+          commentsLoader.removeEventListener('click', onCommentsLoaderClick);
           bigPicture.classList.add('hidden');
           body.classList.remove('modal-open');
           document.removeEventListener('keydown', onPopupEscPress);

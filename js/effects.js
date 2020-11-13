@@ -2,7 +2,7 @@
 
 (function () {
 
-  const DEFAULT_VALUE = 20;
+  const DEFAULT_VALUE = 100;
 
   const effectLevelPin = document.querySelector('.effect-level__pin');
   const effectLevelLine = document.querySelector('.effect-level__line');

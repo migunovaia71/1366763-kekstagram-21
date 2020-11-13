@@ -21,13 +21,15 @@
   const imgUploadSubmit = document.querySelector('.img-upload__submit');
 
   uploadFile.addEventListener('change', () => {
+    window.effects.setDefaultEffect();
     uploadOverlay.classList.remove('hidden');
     body.classList.add('modal-open');
     document.addEventListener('keydown', onPopupEscPress);
   });
 
   const onPopupEscPress = (evt) => {
-    if (evt.key === KEY_ESCAPE && document.activeElement !== textDescription) {
+    if (evt.key === KEY_ESCAPE && document.activeElement !== textDescription
+        && document.activeElement !== textHashtags) {
       evt.preventDefault();
       closePopup();
     }
@@ -92,7 +94,6 @@
       closePopup();
       showMessage(successTemplate, '.success__button');
     }
-    console.log('1111');
 
     if (imgUploadForm.checkValidity()) {
       window.load.loadData(URL, successHandler, errorHandler, 'POST', formData);
