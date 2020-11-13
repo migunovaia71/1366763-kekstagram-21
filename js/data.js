@@ -16,12 +16,12 @@
     element.querySelector('.picture__img').src = photo.url;
     element.querySelector('.picture__likes').textContent = photo.likes;
     element.querySelector('.picture__comments').textContent = photo.comments.length;
-    
+
     const onPhotoClick = (event) => {
       event.preventDefault();
       window.popup.open(photo);
     }
-  
+
     element.addEventListener('click', onPhotoClick);
 
     return element;
@@ -46,7 +46,7 @@
   }
 
   const successHandler = (data) => {
-    window.data.loadedData = data;
+    window.data.photos = data;
     pullDocument(data);
     window.filter.showFilters();
   }
@@ -54,7 +54,7 @@
   window.load.loadData(URL, successHandler, errorHandler);
 
   window.data = {
-    loadedData: [],
+    photos: [],
     pullDocument: pullDocument
   };
 

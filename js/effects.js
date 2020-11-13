@@ -33,7 +33,7 @@
           imgUploadPreview.style.filter = 'invert(' + persent + '%)';
           break;
       case 'effects__preview--phobos':
-        imgUploadPreview.style.filter = 'blur(' + persent/100*3 + 'px)';
+        imgUploadPreview.style.filter = 'blur(' + persent / 100 * 3 + 'px)';
         break;
       case 'effects__preview--heat':
         imgUploadPreview.style.filter = 'brightness(' + (persent/100*2 + 1) + ')';
@@ -56,9 +56,9 @@
     }
 
     const onMouseUp = (upEvent) => {
-      upEvent.preventDefault(); 
+      upEvent.preventDefault();
       document.removeEventListener('mousemove', onMouseMove);
-      document.removeEventListener('mouseup', onMouseUp);   
+      document.removeEventListener('mouseup', onMouseUp);
     }
 
     document.addEventListener('mousemove', onMouseMove);

@@ -23,7 +23,7 @@
   const onDeafultFilterClick =  window.utils.debounce(() => {
     clearStyles();
     filterDefault.classList.add('img-filters__button--active');
-    window.data.pullDocument(window.data.loadedData);  
+    window.data.pullDocument(window.data.photos);
   });
 
   filterDefault.addEventListener('click', onDeafultFilterClick);
@@ -33,7 +33,7 @@
     filterRandom.classList.add('img-filters__button--active');
     let result = [];
     let indexes = [];
-    const data = window.data.loadedData;
+    const data = window.data.photos;
     for (let i = 0; i < data.length; i++) {
       const index = window.utils.getRandomInt(0, data.length - 1);
       if (!indexes.includes(index) && result.length < ELEM_COUNT) {
@@ -49,7 +49,7 @@
   const onDiscussedFilterClick =  window.utils.debounce(() => {
     clearStyles();
     filterDiscussed.classList.add('img-filters__button--active');
-    const data = window.data.loadedData.slice(0);
+    const data = window.data.photos.slice(0);
     data.sort((photo1, photo2) => {
       return photo2.comments.length - photo1.comments.length;
     });
