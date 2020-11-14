@@ -9,53 +9,53 @@
   };
   const TIMEOUT_IN_MS = 10000;
 
-  const loadData = (url, onSuccess, onError, method = 'GET', data = null) => {
+  const loadData = (url, onSuccess, onError, method = `GET`, data = null) => {
     const xhr = new XMLHttpRequest();
 
-    xhr.responseType = 'json';
+    xhr.responseType = `json`;
 
-    xhr.addEventListener('load', () => {
-        let error;
-        switch (xhr.status) {
-            case StatusCode.OK:
-                onSuccess(xhr.response);
-                break;
+    xhr.addEventListener(`load`, () => {
+      let error;
+      switch (xhr.status) {
+        case StatusCode.OK:
+          onSuccess(xhr.response);
+          break;
 
-            case StatusCode.BAD_REQUEST:
-                error = 'Неверный запрос';
-                break;
-            case StatusCode.UNAUTHORIZED:
-                error = 'Пользователь не авторизован';
-                break;
-            case StatusCode.NOT_FOUND:
-                error = 'Ничего не найдено';
-                break;
+        case StatusCode.BAD_REQUEST:
+          error = `Неверный запрос`;
+          break;
+        case StatusCode.UNAUTHORIZED:
+          error = `Пользователь не авторизован`;
+          break;
+        case StatusCode.NOT_FOUND:
+          error = `Ничего не найдено`;
+          break;
 
-            default:
-                error = 'Cтатус ответа: : ' + xhr.status + ' ' + xhr.statusText;
-        }
+        default:
+          error = `Cтатус ответа: : ` + xhr.status + ` ` + xhr.statusText;
+      }
 
-        if (error) {
-            onError(error);
-        }
+      if (error) {
+        onError(error);
+      }
     });
 
-    xhr.addEventListener('error', () => {
-      onError('Произошла ошибка соединения');
+    xhr.addEventListener(`error`, () => {
+      onError(`Произошла ошибка соединения`);
     });
 
-    xhr.addEventListener('timeout', () => {
-      onError('Запрос не успел выполниться за ' + xhr.timeout + 'мс');
+    xhr.addEventListener(`timeout`, () => {
+      onError(`Запрос не успел выполниться за ` + xhr.timeout + `мс`);
     });
 
     xhr.timeout = TIMEOUT_IN_MS;
 
     xhr.open(method, url);
     xhr.send(data);
-  }
+  };
 
   window.load = {
-    loadData: loadData
+    loadData
   };
 
 })();

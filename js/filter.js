@@ -4,33 +4,33 @@
 
   const ELEM_COUNT = 10;
 
-  const imgFilters = document.querySelector('.img-filters');
-  const filterDefault = document.querySelector('#filter-default');
-  const filterRandom = document.querySelector('#filter-random');
-  const filterDiscussed = document.querySelector('#filter-discussed');
-  const imgFiltersButtons = document.querySelectorAll('.img-filters__button');
+  const imgFilters = document.querySelector(`.img-filters`);
+  const filterDefault = document.querySelector(`#filter-default`);
+  const filterRandom = document.querySelector(`#filter-random`);
+  const filterDiscussed = document.querySelector(`#filter-discussed`);
+  const imgFiltersButtons = document.querySelectorAll(`.img-filters__button`);
 
   const showFilters = () => {
-    imgFilters.classList.remove('img-filters--inactive');
-  }
+    imgFilters.classList.remove(`img-filters--inactive`);
+  };
 
   const clearStyles = () => {
     imgFiltersButtons.forEach((button) => {
-      button.classList.remove('img-filters__button--active');
+      button.classList.remove(`img-filters__button--active`);
     });
-  }
+  };
 
-  const onDeafultFilterClick =  window.utils.debounce(() => {
+  const onDeafultFilterClick = window.utils.debounce(() => {
     clearStyles();
-    filterDefault.classList.add('img-filters__button--active');
+    filterDefault.classList.add(`img-filters__button--active`);
     window.data.pullDocument(window.data.photos);
   });
 
-  filterDefault.addEventListener('click', onDeafultFilterClick);
+  filterDefault.addEventListener(`click`, onDeafultFilterClick);
 
-  const onRandomFilterClick =  window.utils.debounce(() => {
+  const onRandomFilterClick = window.utils.debounce(() => {
     clearStyles();
-    filterRandom.classList.add('img-filters__button--active');
+    filterRandom.classList.add(`img-filters__button--active`);
     let result = [];
     let indexes = [];
     const data = window.data.photos;
@@ -44,18 +44,19 @@
     window.data.pullDocument(result);
   });
 
-  filterRandom.addEventListener('click', onRandomFilterClick);
+  filterRandom.addEventListener(`click`, onRandomFilterClick);
 
-  const onDiscussedFilterClick =  window.utils.debounce(() => {
+  const onDiscussedFilterClick = window.utils.debounce(() => {
     clearStyles();
-    filterDiscussed.classList.add('img-filters__button--active');
+    filterDiscussed.classList.add(`img-filters__button--active`);
     const data = window.data.photos.slice(0);
     data.sort((photo1, photo2) => {
       return photo2.comments.length - photo1.comments.length;
     });
-    window.data.pullDocument(data);  });
+    window.data.pullDocument(data);
+  });
 
-  filterDiscussed.addEventListener('click', onDiscussedFilterClick);
+  filterDiscussed.addEventListener(`click`, onDiscussedFilterClick);
 
   window.filter = {
     showFilters

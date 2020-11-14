@@ -6,21 +6,21 @@
 
   const getRandomInt = (minValue, maxValue) => {
     return Math.floor(Math.random() * (maxValue - minValue + 1)) + minValue;
-  }
+  };
 
   window.utils = {
     getRandomInt
   };
 
-  
-  window.utils.debounce = function (cb) {
-    var lastTimeout = null;
 
-    return function(...parameters) {
+  window.utils.debounce = function (cb) {
+    let lastTimeout = null;
+
+    return function (...parameters) {
       if (lastTimeout) {
         window.clearTimeout(lastTimeout);
       }
-      lastTimeout = window.setTimeout(function() {
+      lastTimeout = window.setTimeout(function () {
         cb(...parameters);
       }, DEBOUNCE_INTERVAL);
     };
